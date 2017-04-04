@@ -27,3 +27,12 @@
 *.exe
 *.out
 *.app
+
+.externals
+*.swp
+dev/target
+dev/rapidjson
+dev/rapidjson_mxxru
+dev/catch
+*.sublime-project
+*.sublime-workspace
