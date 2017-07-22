@@ -207,7 +207,7 @@ write_json_value(
 	rapidjson::Value & object,
 	rapidjson::MemoryPoolAllocator<> & allocator )
 {
-	object.SetString( s, allocator );
+	object.SetString( s.c_str(), allocator );
 }
 
 //
