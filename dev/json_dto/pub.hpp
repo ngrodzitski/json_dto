@@ -18,6 +18,7 @@
 #include <rapidjson/error/error.h>
 #include <rapidjson/error/en.h>
 #include <rapidjson/writer.h>
+#include <rapidjson/prettywriter.h>
 #include <rapidjson/stringbuffer.h>
 #include <rapidjson/ostreamwrapper.h>
 #include <rapidjson/istreamwrapper.h>
@@ -956,7 +957,7 @@ operator << ( json_output_t & o, const DTO & v )
 
 template < typename DTO >
 std::string
-to_json( const DTO & dto )
+to_json( const DTO & dto, bool pretty = false )
 {
 	rapidjson::Document output_doc;
 	json_output_t jout{
@@ -965,10 +966,17 @@ to_json( const DTO & dto )
 	jout << dto;
 
 	rapidjson::StringBuffer buffer;
-	rapidjson::Writer< rapidjson::StringBuffer > writer( buffer );
-	output_doc.Accept( writer );
+	if (!pretty) {
+		rapidjson::Writer< rapidjson::StringBuffer > writer( buffer );
+		output_doc.Accept( writer );
 
-	return buffer.GetString();
+		return buffer.GetString();
+	} else {
+		rapidjson::PrettyWriter< rapidjson::StringBuffer > writer( buffer );
+		output_doc.Accept( writer );
+
+		return buffer.GetString();
+	}
 }
 
 inline void
