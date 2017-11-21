@@ -16,13 +16,13 @@ namespace json_dto
 template <>
 void
 read_json_value(
-	const rapidjson::Value & object,
-	std::tm & v )
+	std::tm & v,
+	const rapidjson::Value & object )
 {
 	try
 	{
 		std::string representation;
-		read_json_value( object, representation );
+		read_json_value( representation, object );
 
 		const std::regex dt_regex{
 			R"regex(^(\d{4})\.(\d{2})\.(\d{2}) (\d{2}):(\d{2}):(\d{2})$)regex" };
@@ -100,12 +100,10 @@ struct message_t
 	// Message text.
 	std::string m_text;
 
-	template < typename JSON_IO >
-	void
-	json_io( JSON_IO & io )
+	template< typename Json_Io >
+	void json_io( Json_Io & io )
 	{
-		io
-			& json_dto::mandatory( "from", m_from )
+		io & json_dto::mandatory( "from", m_from )
 			& json_dto::mandatory( "when", m_when )
 			& json_dto::mandatory( "text", m_text );
 	}
