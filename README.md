@@ -313,8 +313,7 @@ Binders for mandatory fields are created via `mandatory()` function:
 template <
     typename Field_Type,
     typename Validator = empty_validator_t>
-auto
-mandatory(
+auto mandatory(
   string_ref_t field_name,
   Field_Type & field,
   Validator validator = Validator{} );
@@ -340,8 +339,7 @@ template <
     typename Field_Type,
     typename Field_Default_Value_Type,
     typename Validator = empty_validator_t>
-auto
-optional(
+auto optional(
   string_ref_t field_name,
   Field_Type & field,
   Field_Default_Value_Type default_value,
@@ -350,8 +348,7 @@ optional(
 template <
     typename Field_Type,
     typename Validator = empty_validator_t >
-auto
-optional_no_default(
+auto optional_no_default(
   string_ref_t field_name,
   Field_Type & field,
   Validator validator = Validator{} );
@@ -943,19 +940,19 @@ namespace json_dto
 
 template<>
 void read_json_value(
-	Custom_Type & v,
-	const rapidjson::Value & object)
+  Custom_Type & v,
+  const rapidjson::Value & object)
 {
-	// ...
+  // ...
 }
 
 template<>
 void write_json_value(
-	const Custom_Type & v,
-	rapidjson::Value & object,
-	rapidjson::MemoryPoolAllocator<> & allocator)
+  const Custom_Type & v,
+  rapidjson::Value & object,
+  rapidjson::MemoryPoolAllocator<> & allocator)
 {
-	// ...
+  // ...
 }
 
 } /* namespace json_dto */
