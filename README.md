@@ -1,3 +1,7 @@
+# MOVED
+
+Checkout actual repository here: https://github.com/Stiffstream/json_dto
+
 # What Is json_dto?
 
 *json_dto* library is a small header-only helper
